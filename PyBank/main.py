@@ -10,11 +10,13 @@ net_total=0
 past_month_value=None
 month_changes=[]
 
+greatest_increase= ["", 0]
+greatest_decrease= ["", 0]
 
 with open(csvpath, "r") as csvfile:
     csvreader=csv.reader(csvfile,delimiter=",")
 
-    next(csvreader)
+    csv_header=next(csvreader)
 
     for row in csvreader:
         total_months=total_months+1
@@ -25,7 +27,14 @@ with open(csvpath, "r") as csvfile:
         if past_month_value != None:
             change= plvalue - past_month_value
             month_changes.append(change)
+            
+            if change > greatest_increase[1]:
+                greatest_increase[0] = row[0]
+                greatest_increase[1] = change
         
+            if change < greatest_decrease[1]:
+                greatest_decrease[0]= row[0]
+                greatest_decrease[1]= change
         past_month_value=plvalue
 
 if len(month_changes)>0:
@@ -37,3 +46,5 @@ else:
 print(f"Total months: {total_months}")
 print(f"Total: {net_total}")
 print(f"The average change is $:{average_change:.2f}")
+print(f"Greatest increase in profits: ", greatest_increase[0], "($", greatest_increase[1], ")")
+print(f"Greatest decrease in profits: ", greatest_decrease[0], "($", greatest_decrease[1], ")")
