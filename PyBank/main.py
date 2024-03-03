@@ -44,7 +44,24 @@ else:
 
 
 print(f"Total months: {total_months}")
-print(f"Total: {net_total}")
+print(f"Total: ${net_total}")
 print(f"The average change is $:{average_change:.2f}")
 print(f"Greatest increase in profits: ", greatest_increase[0], "($", greatest_increase[1], ")")
 print(f"Greatest decrease in profits: ", greatest_decrease[0], "($", greatest_decrease[1], ")")
+
+output = (
+    f"Financial Analysis\n"
+    f"----------------------------\n"
+    f"Total months: {total_months}\n"
+    f"Total: ${net_total}\n"
+    f"Average change: ${average_change:.2f}\n"
+    f"Greatest increase in profits: {greatest_increase[0]} (${greatest_increase[1]})\n"
+    f"Greatest decrease in profits: {greatest_decrease[0]} (${greatest_decrease[1]})\n"
+)
+
+print(output)
+
+output_path=os.path.join("/Users/kevindorado/Desktop/Python_challenge/PyBank/Analysis/pybank_analysis.txt")
+
+with open(output_path, "w") as textfile:
+    textfile.write(output)
