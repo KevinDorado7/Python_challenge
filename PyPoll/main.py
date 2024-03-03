@@ -23,13 +23,23 @@ with open(csvpath,"r") as csvfile:
 
         candidates_votes[candidate_name]=candidates_votes[candidate_name] + 1
 
-        if row[2] not in candidates:
-            candidates.append(row[2])
+winner = ""
+max_votes= 0
 
-print(f"Total votes: {total_votes}")
-print("Candidate vote percentage and total votes:")
+print("Election Results")
+print("-------------------------")
+print(f"Total Votes: {total_votes}")
+print("-------------------------")
 
 for candidate in candidates:
     votes=candidates_votes[candidate]
     percentage= (votes/total_votes)*100
     print(f"{candidate}: {percentage:.3f}% ({votes})")
+    
+    if votes>max_votes:
+        max_votes=votes
+        winner = candidate
+
+print("-------------------------")
+print(f"Winner: {winner}")
+print("-------------------------")
