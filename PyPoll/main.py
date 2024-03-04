@@ -26,20 +26,39 @@ with open(csvpath,"r") as csvfile:
 winner = ""
 max_votes= 0
 
-print("Election Results")
-print("-------------------------")
-print(f"Total Votes: {total_votes}")
-print("-------------------------")
+# print("Election Results")
+# print("-------------------------")
+# print(f"Total Votes: {total_votes}")
+# print("-------------------------")
+
+output_text = "Election Results\n"
+output_text += "-------------------------\n"
+output_text += f"Total Votes: {total_votes}\n"
+output_text += "-------------------------\n"
 
 for candidate in candidates:
     votes=candidates_votes[candidate]
     percentage= (votes/total_votes)*100
-    print(f"{candidate}: {percentage:.3f}% ({votes})")
+    #print(f"{candidate}: {percentage:.3f}% ({votes})")
+    
+    output_text+=(f"{candidate}: {percentage:.3f}% ({votes})")
     
     if votes>max_votes:
         max_votes=votes
         winner = candidate
 
-print("-------------------------")
-print(f"Winner: {winner}")
-print("-------------------------")
+output_text += "-------------------------\n"
+output_text += f"Winner: {winner}\n"
+output_text += "-------------------------\n"
+
+# print("-------------------------")
+# print(f"Winner: {winner}")
+# print("-------------------------")
+
+print(output_text)
+
+output_path= os.path.join("/Users/kevindorado/Desktop/Python_challenge/PyPoll/Analysis/PyPoll_analysis.txt")
+with open(output_path,"w") as textfile:
+    textfile.write(output_text)
+
+
