@@ -41,7 +41,7 @@ for candidate in candidates:
     percentage= (votes/total_votes)*100
     #print(f"{candidate}: {percentage:.3f}% ({votes})")
     
-    output_text+=(f"{candidate}: {percentage:.3f}% ({votes})")
+    output_text+=(f"{candidate}: {percentage:.3f}% ({votes})\n")
     
     if votes>max_votes:
         max_votes=votes
